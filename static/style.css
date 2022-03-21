@@ -1,0 +1,171 @@
+/*
+ * Globals
+ */
+
+
+/* Custom default button */
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+  color: #333;
+  text-shadow: none; /* Prevent inheritance from `body` */
+}
+
+.btn{
+    margin: .25rem;
+    padding: .25rem .25rem;
+}
+
+/*
+ * Base structure
+ */
+
+body {
+  text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
+  box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+}
+
+.cover-container {
+  max-width: 80em;
+}
+
+
+/*
+ * Header
+ */
+
+.nav-masthead .nav-link {
+  padding: .25rem 0;
+  font-weight: 700;
+  color: rgba(255, 255, 255, .5);
+  background-color: transparent;
+  border-bottom: .25rem solid transparent;
+}
+
+.nav-masthead .nav-link:hover,
+.nav-masthead .nav-link:focus {
+  border-bottom-color: rgba(255, 255, 255, .25);
+}
+
+.nav-masthead .nav-link + .nav-link {
+  margin-left: 1rem;
+}
+
+.nav-masthead .active {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+/* Style for Extra Large Screen */
+@media (max-width:3920px) {
+.btn-sq-responsive {
+width: 200px !important;
+max-width: 100% !important;
+max-height: 100% !important;
+height: 200px !important;
+font-size:24px;
+}
+}
+    
+/* Style for Large Screen */
+@media (max-width:991px) {
+.btn-sq-responsive {
+width: 150px !important;
+max-width: 100% !important;
+max-height: 100% !important;
+height: 150px !important;
+font-size:18px;
+}
+}
+
+/* Style for Medium Screen */
+@media (max-width:767px) {
+.btn-sq-responsive {
+width: 100px !important; /* whatever width you want for medium screen */
+max-width: 100% !important;
+max-height: 100% !important;
+height: 100px !important; /* whatever height you want for medium screen */
+font-size:12px;
+}
+}
+
+/* Style for Small Screen */
+@media (max-width:575px) {
+.btn-sq-responsive {
+width: 50px !important; /* whatever width you want for mobile screen */
+max-width: 100% !important;
+max-height: 100% !important;
+height: 50px !important; /* whatever height you want for mobile screen */
+font-size:5px;
+padding: 0px;
+font-size:7px;
+}
+}
+
+/*CSS FOR EDITABLE TABLE*/
+.mt-100 {
+    margin-top: 100px
+}
+
+.container-fluid {
+    margin-top: 50px
+}
+
+.card {
+    border-radius: 5px;
+    -webkit-box-shadow: 0 0 5px 0 rgba(43, 43, 43, 0.1), 0 11px 6px -7px rgba(43, 43, 43, 0.1);
+    box-shadow: 0 0 5px 0 rgba(43, 43, 43, 0.1), 0 11px 6px -7px rgba(43, 43, 43, 0.1);
+    border: none;
+    margin-bottom: 30px;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out
+}
+
+.card .card-header {
+    background-color: transparent;
+    border-bottom: none;
+    padding: 20px;
+    position: relative
+}
+
+.card .card-block {
+    padding: 1.25rem
+}
+
+.table-responsive {
+    display: inline-block;
+    width: 100%;
+    overflow-x: auto
+}
+
+.card .card-block table tr {
+    padding-bottom: 20px
+}
+
+.table>thead>tr>th {
+    border-bottom-color: #ccc
+}
+
+.table th {
+    padding: 1.25rem 0.75rem
+}
+
+td,
+th {
+    white-space: nowrap
+}
+
+.tabledit-input:disabled {
+    display: none
+}
+
+.btn-primary,
+.sweet-alert button.confirm,
+.wizard>.actions a {
+    background-color: #4099ff;
+    border-color: #4099ff;
+    color: #fff;
+    cursor: pointer;
+    -webkit-transition: all ease-in 0.3s;
+    transition: all ease-in 0.3s
+}

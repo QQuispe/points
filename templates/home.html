@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="{{ url_for('rummy')}}" method="POST">
+    <button type="submit" class="btn btn-primary btn-sq-responsive">Rummy 500</button>
+    <button type="submit" class="btn btn-primary btn-sq-responsive">Game 2</button>
+    <button type="submit" class="btn btn-primary btn-sq-responsive">Game 3</button>
+</form>
+
+{% endblock %}
