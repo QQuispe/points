@@ -169,3 +169,29 @@ th {
     -webkit-transition: all ease-in 0.3s;
     transition: all ease-in 0.3s
 }
+
+/* CSS FOR BUTTON GROUP ON HOME PAGE */
+.btn-group button {
+  background-color: #4099ff; /* background */
+  border: 1px solid #4099ff; /* border */
+  color: white; /* White text */
+  padding: 10px 96px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  float: left; /* Float the buttons side by side */
+}
+
+.btn-group button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  background-color: #3788e3;
+}

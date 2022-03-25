@@ -1,10 +1,34 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<h1>Select a game</h1>
+
 <form action="{{ url_for('rummy')}}" method="POST">
     <button type="submit" class="btn btn-primary btn-sq-responsive">Rummy 500</button>
     <button type="submit" class="btn btn-primary btn-sq-responsive">Game 2</button>
     <button type="submit" class="btn btn-primary btn-sq-responsive">Game 3</button>
 </form>
+
+<h3>Select game type</h3>
+<div class="btn-group">
+    <button>New game</button>
+    <button>Load game</button>
+</div>
+
+<!-- if new game ask for number of players -->
+<h3>Select number of players</h3>
+<div class="btn-group">
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+</div>
+
+<!-- else show list of past games from database -->
+<h3>Select a past game</h3>
+<button>Game 1 - {Date}</button>
+<button>Game 2 - {Date}</button>
+<button>Game 3 - {Date}</button>
+<button>Game 4 - {Date}</button>
+<button>Game 5 - {Date}</button>
 
 {% endblock %}
