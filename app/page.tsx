@@ -3,19 +3,21 @@ import Head from "next/head";
 import AddPlayer from "./components/addPlayer";
 import Scoreboard from "./components/scoreboard";
 import Header from "./components/header";
-import { useState, useEffect } from "react";
+import SelectGame from "./components/selectGame";
+import { useState } from "react";
 import { FaPlus } from "react-icons/fa";
 
+// Home component
 export default function Home() {
   const [players, setPlayers] = useState<string[]>([]);
   const [rounds, setRounds] = useState<number[]>([]);
   const [scores, setScores] = useState<number[][]>([]);
   const [gameSelected, setGameSelected] = useState(false);
-  const [gameEnded, setGameEnded] = useState(false);
   const [winner, setWinner] = useState("");
   const [runningTotal, setRunningTotal] = useState<number[]>([]);
   const [showGameWinnerModal, setShowGameWinnerModal] = useState(false);
-  
+  const [selectedGame, setSelectedGame] = useState("");
+
   // GameWinnerModal component
   const GameWinnerModal: React.FC<{ winner: string; onClose: () => void }> = ({
     winner,
@@ -61,6 +63,7 @@ export default function Home() {
   };
 
   const selectGame1 = () => {
+    setSelectedGame("Rumy");
     setGameSelected(true);
   };
 
@@ -75,7 +78,6 @@ export default function Home() {
     setRounds([]);
     setScores([]);
     setGameSelected(false);
-    setGameEnded(false);
     setWinner("");
     setRunningTotal([]);
   };
@@ -91,7 +93,6 @@ export default function Home() {
 
   const checkGameEnd = (playerIndex: number) => {
     if (runningTotal[playerIndex] >= 500) {
-      setGameEnded(true);
       setWinner(players[playerIndex]);
       setShowGameWinnerModal(true);
     }
@@ -100,13 +101,6 @@ export default function Home() {
   const closeGameWinnerModal = () => {
     setShowGameWinnerModal(false);
   };
-
-  useEffect(() => {
-    if (gameEnded) {
-      // Scroll to the end of the page to show the winner
-      window.scrollTo(0, document.body.scrollHeight);
-    }
-  }, [gameEnded]);
 
   return (
     <div className="px-4 py-2">
@@ -117,78 +111,59 @@ export default function Home() {
 
       <Header />
 
-      <main>
-        <h1 className="text-lg text-center">Select a game:</h1>
+      <main className="flex justify-center">
+        {!gameSelected && <SelectGame selectGame={selectGame1} />}
 
-        <section>
-          <div className="flex justify-center">
-            <button
-              className="px-4 py-2 mr-4 bg-blue-500 text-white rounded hover:bg-blue-400"
-              onClick={selectGame1}
-            >
-              Rumy
-            </button>
-            <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-400">
-              Game 2
-            </button>
-          </div>
-        </section>
-
-        <section>
-          {gameSelected ? (
-            <div>
-              <h2>Players</h2>
-              <ul>
-                {players.map((player, index) => (
-                  <li key={index}>{player}</li>
-                ))}
-              </ul>
-              <AddPlayer addPlayer={addPlayer} />
-              {rounds.length === 0 && (
-                <button
-                  className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-400"
-                  onClick={startGame}
-                  disabled={players.length < 2}
-                >
-                  {players.length < 2 ? "Start (Minimum 2 players)" : "Start"}
-                </button>
-              )}
-              {rounds.length > 0 && !gameEnded && (
-                <div>
-                  <Scoreboard
-                    players={players}
-                    rounds={rounds}
-                    scores={scores}
-                    updateScore={updateScore}
-                  />
-
-                  <div className="flex justify-between">
-                    <button
-                      className="flex items-center px-4 py-2 mt-4 bg-blue-500 text-white rounded hover:bg-blue-400"
-                      onClick={addRound}
-                    >
-                      <FaPlus className="mr-2" />
-                      Add Round
-                    </button>
-
-                    <button
-                      className="flex items-center px-4 py-2 mt-4 bg-red-500 text-white rounded hover:bg-red-400"
-                      onClick={resetGame}
-                    >
-                      Reset Game
-                    </button>
-                  </div>
-                </div>
-              )}
-              {gameEnded && showGameWinnerModal && (
-                <GameWinnerModal
-                  winner={winner}
-                  onClose={closeGameWinnerModal}
+        {gameSelected && selectedGame === "Rumy" && (
+          <div>
+            <h1>2. Add Players</h1>
+            <ul>
+              {players.map((player, index) => (
+                <li key={index}>{player}</li>
+              ))}
+            </ul>
+            <AddPlayer addPlayer={addPlayer} />
+            {rounds.length === 0 && (
+              <button
+                className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-400"
+                onClick={startGame}
+                disabled={players.length < 2}
+              >
+                {players.length < 2 ? "Start (Minimum 2 players)" : "Start"}
+              </button>
+            )}
+            {rounds.length > 0 && (
+              <div>
+                <Scoreboard
+                  players={players}
+                  rounds={rounds}
+                  scores={scores}
+                  updateScore={updateScore}
                 />
-              )}
-            </div>
-          ) : null}
-        </section>
+
+                <div className="flex justify-between">
+                  <button
+                    className="flex items-center px-4 py-2 mt-4 bg-blue-500 text-white rounded hover:bg-blue-400"
+                    onClick={addRound}
+                  >
+                    <FaPlus className="mr-2" />
+                    Add Round
+                  </button>
+
+                  <button
+                    className="flex items-center px-4 py-2 mt-4 bg-red-500 text-white rounded hover:bg-red-400"
+                    onClick={resetGame}
+                  >
+                    Reset Game
+                  </button>
+                </div>
+              </div>
+            )}
+            {showGameWinnerModal && (
+              <GameWinnerModal winner={winner} onClose={closeGameWinnerModal} />
+            )}
+          </div>
+        )}
       </main>
     </div>
   );
